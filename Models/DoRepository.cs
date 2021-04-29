@@ -26,8 +26,9 @@ namespace MonitorDO2.Models
         public List<RDnDO2Model> GetDo2s()
         {
             var sql =
-                @"SELECT RD.ID as RdId, DRD.ID as DrdId, DO.ID as Do2Id, A.FULL_AWB_NUMBER as FullAwbNumber, RD.OPERATION_DATE as RdDate 
-	,ABS(RD.PIECES) as Pieces, ABS(RD.WEIGHT) as Weight
+                @"SELECT RD.ID as RdId, DRD.ID as DrdId, DO.ID as Do2Id,
+    A.FULL_AWB_NUMBER as FullAwbNumber, A.TECHNOLOGY as AwbTech, 
+    RD.OPERATION_DATE as RdDate, ABS(RD.PIECES) as Pieces, ABS(RD.WEIGHT) as Weight
 FROM DOCUSR.DOC_AWB_RECEIPT_DISPATCH RD
     INNER JOIN DOCUSR.DOC_AWB A ON A.ID = RD.DOC_ID
     LEFT JOIN DOCUSR.DOC_DO_RECEIPT_DISPATCH DRD ON DRD.AWB_REC_DISP_ID = RD.ID

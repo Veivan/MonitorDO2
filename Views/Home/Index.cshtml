@@ -8,6 +8,7 @@
 <table class="table">
     <tr>
         <th>Номер AWB</th>
+        <th>Технология</th>
         <th>Дата выдачи</th>
         <th>Мест</th>
         <th>Вес</th>
@@ -15,6 +16,6 @@
 
     @foreach (var item in Model.RdWoDo2s)
     {
-        <tr><td>@item.FullAwbNumber</td><td>@item.RdDate</td><td>@item.Pieces</td><td>@item.Weight</td></tr>
+        <tr><td>@item.FullAwbNumber</td><td>@item.AwbTech</td><td>@item.RdDate</td><td>@item.Pieces</td><td>@item.Weight</td></tr>
     }
 </table>

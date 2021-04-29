@@ -17,6 +17,9 @@ namespace MonitorDO2.Models
         [Description(@"AWB number")]
         public string FullAwbNumber { get; set; }
 
+        [Description(@"AWB technology")]
+        public string AwbTech { get; set; }       
+
         [Description(@"dispatch's date")]
         public DateTime RdDate { get; set; }
         public string Pieces { get; set; }
