@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorDO2", "MonitorDO2.csproj", "{01B8832B-F0F6-4B21-9F97-7318583E1AAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01B8832B-F0F6-4B21-9F97-7318583E1AAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01B8832B-F0F6-4B21-9F97-7318583E1AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01B8832B-F0F6-4B21-9F97-7318583E1AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01B8832B-F0F6-4B21-9F97-7318583E1AAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F5DC1B5E-CC30-4290-B7D1-152A50BD7A71}
+	EndGlobalSection
+EndGlobal

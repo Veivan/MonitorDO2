@@ -1,0 +1,20 @@
+﻿@model MonitorDO2.Models.Do2ViewModel
+@{
+    ViewData["Title"] = "Не сформировано ДО2";
+}
+
+Всего не сформировано ДО2: @Model.RdWoDo2s.Count()
+
+<table class="table">
+    <tr>
+        <th>Номер AWB</th>
+        <th>Дата выдачи</th>
+        <th>Мест</th>
+        <th>Вес</th>
+    </tr>
+
+    @foreach (var item in Model.RdWoDo2s)
+    {
+        <tr><td>@item.FullAwbNumber</td><td>@item.RdDate</td><td>@item.Pieces</td><td>@item.Weight</td></tr>
+    }
+</table>
