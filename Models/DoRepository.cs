@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Devart.Data.Oracle;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +11,7 @@ namespace MonitorDO2.Models
         //void Create(User user);
         //void Delete(int id);
         //User Get(int id);
-        List<RDnDO2Model> GetDo2s();
+        List<RDnDO2Model> GetDo2s(DateTime dt);
         //void Update(User user);
     }
 
@@ -23,8 +24,10 @@ namespace MonitorDO2.Models
             connectionString = conn;
         }
 
-        public List<RDnDO2Model> GetDo2s()
+        public List<RDnDO2Model> GetDo2s(DateTime dt)
         {
+            if (dt == null) dt = DateTime.Now;
+
             var sql =
                 @"SELECT RD.ID as RdId, DRD.ID as DrdId, DO.ID as Do2Id,
     A.FULL_AWB_NUMBER as FullAwbNumber, A.TECHNOLOGY as AwbTech, 
@@ -37,7 +40,7 @@ WHERE
     A.TECHNOLOGY IN ('IMP', 'TRN')	
     AND A.IS_CUSTOMS_CONTROLLED = 1 
     AND A.IS_PREVENT_SVH_STORAGE = 0
-    AND TO_CHAR(RD.OPERATION_DATE, 'DD-MM-YY') = :dt
+    AND TO_CHAR(RD.OPERATION_DATE, 'DD-MM-YY') = :strDt
     AND RD.STATUS = 'Approved'
     AND RD.OPERATION_TYPE IN ('CLNT', 'EXP', 'DWW', 'DAA', 'DREX', 'ZTK', 'ZTKLOCK')
     AND DO.ID IS NULL ";
@@ -46,9 +49,10 @@ WHERE
                 //var do1Id = "DO1-938595";
                 //var res = db.Query<Do2Model>("SELECT ID, DOC_ID, STATUS, DO2_NUMBER as Do2Number, DO2_DATE FROM DOCUSR.DOC_DO_DO2 WHERE DOC_ID = :do1Id", new { do1Id }).ToList();
 
-                var dt = "22-04-21";
+                var strDt = dt.ToString("dd-MM-yy");
+                //var strDt = "22-04-21";
 
-                var res = db.Query<RDnDO2Model>(sql, new { dt }).OrderBy(x => x.FullAwbNumber).ToList();
+                var res = db.Query<RDnDO2Model>(sql, new { strDt }).OrderBy(x => x.FullAwbNumber).ToList();
                 return res;
             }
         }

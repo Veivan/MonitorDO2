@@ -20,14 +20,17 @@ namespace MonitorDO2.Controllers
             repo = r;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(DateTime rddate)
         {
+            if (rddate == DateTime.MinValue) rddate = DateTime.Now;
+            //if (rddate == DateTime.MinValue) rddate = new DateTime(2021, 4, 22);
+
             var viewModel = new Do2ViewModel
             {
-                RdWoDo2s = repo.GetDo2s()
+                RdDate = rddate,
+                RdWoDo2s = repo.GetDo2s(rddate)
             };
             return View(viewModel);
-            //return View(repo.GetDo2s());
         }
 
         public IActionResult Privacy()
