@@ -22,7 +22,7 @@ namespace MonitorDO2.Controllers
 
         public IActionResult Index(DateTime rddate)
         {
-            if (rddate == DateTime.MinValue) rddate = DateTime.Now;
+            if (rddate == DateTime.MinValue) rddate = DateTime.Today;
             //if (rddate == DateTime.MinValue) rddate = new DateTime(2021, 4, 22);
 
             var viewModel = new Do2ViewModel
