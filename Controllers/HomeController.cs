@@ -20,15 +20,19 @@ namespace MonitorDO2.Controllers
             repo = r;
         }
 
-        public IActionResult Index(DateTime rddate)
+        public IActionResult Index(DateTime rddate, SortState sortOrder = SortState.AwbNumberAsc)
         {
             if (rddate == DateTime.MinValue) rddate = DateTime.Today;
             //if (rddate == DateTime.MinValue) rddate = new DateTime(2021, 4, 22);
 
+            ViewData["RdDate"] = rddate.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            ViewData["AwbNumberSort"] = sortOrder == SortState.AwbNumberAsc ? SortState.AwbNumberDesc : SortState.AwbNumberAsc;
+            ViewData["AwbTechSort"] = sortOrder == SortState.AwbTechAsc ? SortState.AwbTechDesc : SortState.AwbTechAsc;
+
             var viewModel = new Do2ViewModel
             {
                 RdDate = rddate,
-                RdWoDo2s = repo.GetDo2s(rddate)
+                RdWoDo2s = repo.GetDo2s(rddate, sortOrder)
             };
             return View(viewModel);
         }

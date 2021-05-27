@@ -11,7 +11,7 @@ namespace MonitorDO2.Models
         //void Create(User user);
         //void Delete(int id);
         //User Get(int id);
-        List<RDnDO2Model> GetDo2s(DateTime dt);
+        List<RDnDO2Model> GetDo2s(DateTime dt, SortState sortOrder);
         //void Update(User user);
     }
 
@@ -24,7 +24,7 @@ namespace MonitorDO2.Models
             connectionString = conn;
         }
 
-        public List<RDnDO2Model> GetDo2s(DateTime dt)
+        public List<RDnDO2Model> GetDo2s(DateTime dt, SortState sortOrder)
         {
             if (dt == null) dt = DateTime.Now;
 
@@ -52,8 +52,17 @@ WHERE
                 var strDt = dt.ToString("dd-MM-yy");
                 //var strDt = "22-04-21";
 
-                var res = db.Query<RDnDO2Model>(sql, new { strDt }).OrderBy(x => x.FullAwbNumber).ToList();
-                return res;
+                //var res = db.Query<RDnDO2Model>(sql, new { strDt }).OrderBy(x => x.FullAwbNumber).ToList();
+                var res = db.Query<RDnDO2Model>(sql, new { strDt });
+
+                res = sortOrder switch
+                {
+                    SortState.AwbNumberDesc => res.OrderByDescending(x => x.FullAwbNumber),
+                    SortState.AwbTechAsc => res.OrderBy(x => x.AwbTech),
+                    SortState.AwbTechDesc => res.OrderByDescending(x => x.AwbTech),
+                    _ => res.OrderBy(x => x.FullAwbNumber), // AwbNumberAsc
+                };
+                return res.ToList();
             }
         }
     }

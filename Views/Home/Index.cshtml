@@ -5,7 +5,7 @@
 <form method="get">
     <div class="form-inline form-group">
         <!--label class="control-label">Дата выдачи: </!--label>
-    <input name="rddate" class="form-control" /-->
+        <input name="rddate" class="form-control" /-->
 
         <label asp-for="RdDate" class="control-label"></label>
         <input asp-for="RdDate" id="datepicker" type="date" class="form-control" />
@@ -19,28 +19,38 @@
 <!--div class="form-group">
     <label asp-for="RdDate" class="control-label"></label>
     <input asp-for="RdDate" id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+
+    value="@ViewBag.RdDate" value="@ViewBag.RdDate.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+
     <span asp-validation-for="RdDate" class="text-danger"></span>
 </div-->
-
 @*section Scripts
-{
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <!--script type="text/javascript" src="~/lib/jquery-validation/src/localization/messages_ru.js"></!--script-->
-    <script>
-        $(function () {
-            $("#datepicker").datepicker();
-        });
-    </script>
-}*@
+    {
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <!--script type="text/javascript" src="~/lib/jquery-validation/src/localization/messages_ru.js"></!--script-->
+        <script>
+            $(function () {
+                $("#datepicker").datepicker();
+            });
+        </script>
+    }*@
 
 Всего не сформировано ДО2: @Model.RdWoDo2s.Count()
 
 <table class="table">
     <tr>
-        <th>Номер AWB</th>
-        <th>Технология</th>
+        <th>
+            <a asp-action="Index" asp-route-rddate="@ViewBag.RdDate" asp-route-sortOrder="@ViewBag.AwbNumberSort">
+                Номер AWB
+            </a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-rddate="@ViewBag.RdDate" asp-route-sortOrder="@ViewBag.AwbTechSort">
+                Технология
+            </a>
+        </th>
         <th>Дата выдачи</th>
         <th>Мест</th>
         <th>Вес</th>
